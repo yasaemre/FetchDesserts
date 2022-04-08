@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         return tableView
     }()
     
+    private let searchVC = UISearchController(searchResultsController: nil)
+    var isSearching = false
     private var viewModels = [FRDessertTVCellViewModel]()
     private var meals = [Meals]()
     override func viewDidLoad() {
@@ -27,11 +29,17 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         
         fetchDesserts()
+        createSearchBar()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+    }
+    
+    private func createSearchBar() {
+        navigationItem.searchController = searchVC
+        searchVC.searchBar.delegate = self
     }
     
     func fetchDesserts() {
@@ -83,6 +91,50 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+}
+
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text, !text.isEmpty else {
+            return
+        }
+
+        
+        
+            func updateSearchResults(for searchController: UISearchController) {
+                guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+                isSearching = true
+                tableView.reloadData()
+            }
+        
+            func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+                isSearching = false
+                fetchDesserts()
+                tableView.reloadData()
+            }
+        
+
+        
+        APICaller.shared.searchedDesserts(with: text) { [weak self] result in
+            switch result {
+            case.success(let meals):
+                self?.meals = meals
+                self?.viewModels = meals.compactMap({
+                    FRDessertTVCellViewModel(
+                        title: $0.name ?? "No Name",
+                        imageURL: URL(string: $0.urlToImage ?? ""),
+                        idMeal: $0.idMeal
+                    )
+                })
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.searchVC.dismiss(animated: true, completion: nil)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

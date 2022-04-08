@@ -47,6 +47,44 @@ final class APICaller {
         
         task.resume()
     }
+    
+    public func searchedDesserts(with query:String, completed: @escaping (Result<[Meals], FRError>) -> Void) {
+        let endpoint = baseURL + "/api/json/v1/1/search.php?s="
+        guard !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+        let urlString = endpoint + query
+        guard let url = URL(string: urlString)  else {
+            completed(.failure(.invalidUrl))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let _ = error {
+                completed(.failure(.invalidUrl))
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(APIResponse.self, from: data)
+                print("Desserts: \(result.meals.count)")
+                completed(.success(result.meals))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+            
+        }
+        
+        task.resume()
+    }
 
 
 }
