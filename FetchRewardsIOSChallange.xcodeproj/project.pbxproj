@@ -16,6 +16,12 @@
 		C6F49E7A280091A900B6B7DB /* FetchRewardsIOSChallangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E79280091A900B6B7DB /* FetchRewardsIOSChallangeTests.swift */; };
 		C6F49E84280091A900B6B7DB /* FetchRewardsIOSChallangeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E83280091A900B6B7DB /* FetchRewardsIOSChallangeUITests.swift */; };
 		C6F49E86280091A900B6B7DB /* FetchRewardsIOSChallangeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E85280091A900B6B7DB /* FetchRewardsIOSChallangeUITestsLaunchTests.swift */; };
+		C6F49E94280094D700B6B7DB /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E93280094D700B6B7DB /* APICaller.swift */; };
+		C6F49E972800961100B6B7DB /* FRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E962800961100B6B7DB /* FRError.swift */; };
+		C6F49E9A2800966500B6B7DB /* Desserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E992800966500B6B7DB /* Desserts.swift */; };
+		C6F49E9D28009BB900B6B7DB /* FRDessertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E9C28009BB900B6B7DB /* FRDessertTableViewCell.swift */; };
+		C6F49EA028009C8D00B6B7DB /* FRDessertTVCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E9F28009C8D00B6B7DB /* FRDessertTVCellViewModel.swift */; };
+		C6F49EA22800A74B00B6B7DB /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49EA12800A74B00B6B7DB /* DetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		C6F49E7F280091A900B6B7DB /* FetchRewardsIOSChallangeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchRewardsIOSChallangeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F49E83280091A900B6B7DB /* FetchRewardsIOSChallangeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRewardsIOSChallangeUITests.swift; sourceTree = "<group>"; };
 		C6F49E85280091A900B6B7DB /* FetchRewardsIOSChallangeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRewardsIOSChallangeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C6F49E93280094D700B6B7DB /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		C6F49E962800961100B6B7DB /* FRError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRError.swift; sourceTree = "<group>"; };
+		C6F49E992800966500B6B7DB /* Desserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Desserts.swift; sourceTree = "<group>"; };
+		C6F49E9C28009BB900B6B7DB /* FRDessertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDessertTableViewCell.swift; sourceTree = "<group>"; };
+		C6F49E9F28009C8D00B6B7DB /* FRDessertTVCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDessertTVCellViewModel.swift; sourceTree = "<group>"; };
+		C6F49EA12800A74B00B6B7DB /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +111,14 @@
 		C6F49E61280091A700B6B7DB /* FetchRewardsIOSChallange */ = {
 			isa = PBXGroup;
 			children = (
+				C6F49E9E28009C5200B6B7DB /* ViewModel */,
+				C6F49E9B28009B8200B6B7DB /* View */,
+				C6F49E982800965200B6B7DB /* Model */,
+				C6F49E92280094C300B6B7DB /* NetworkManager */,
 				C6F49E62280091A700B6B7DB /* AppDelegate.swift */,
 				C6F49E64280091A700B6B7DB /* SceneDelegate.swift */,
 				C6F49E66280091A700B6B7DB /* ViewController.swift */,
+				C6F49EA12800A74B00B6B7DB /* DetailVC.swift */,
 				C6F49E68280091A700B6B7DB /* Main.storyboard */,
 				C6F49E6B280091A900B6B7DB /* Assets.xcassets */,
 				C6F49E6D280091A900B6B7DB /* LaunchScreen.storyboard */,
@@ -125,6 +142,47 @@
 				C6F49E85280091A900B6B7DB /* FetchRewardsIOSChallangeUITestsLaunchTests.swift */,
 			);
 			path = FetchRewardsIOSChallangeUITests;
+			sourceTree = "<group>";
+		};
+		C6F49E92280094C300B6B7DB /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				C6F49E93280094D700B6B7DB /* APICaller.swift */,
+				C6F49E952800960500B6B7DB /* Utilities */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		C6F49E952800960500B6B7DB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C6F49E962800961100B6B7DB /* FRError.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C6F49E982800965200B6B7DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6F49E992800966500B6B7DB /* Desserts.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C6F49E9B28009B8200B6B7DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C6F49E9C28009BB900B6B7DB /* FRDessertTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C6F49E9E28009C5200B6B7DB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C6F49E9F28009C8D00B6B7DB /* FRDessertTVCellViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +316,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6F49E9A2800966500B6B7DB /* Desserts.swift in Sources */,
+				C6F49EA028009C8D00B6B7DB /* FRDessertTVCellViewModel.swift in Sources */,
 				C6F49E67280091A700B6B7DB /* ViewController.swift in Sources */,
 				C6F49E63280091A700B6B7DB /* AppDelegate.swift in Sources */,
 				C6F49E65280091A700B6B7DB /* SceneDelegate.swift in Sources */,
+				C6F49EA22800A74B00B6B7DB /* DetailVC.swift in Sources */,
+				C6F49E972800961100B6B7DB /* FRError.swift in Sources */,
+				C6F49E94280094D700B6B7DB /* APICaller.swift in Sources */,
+				C6F49E9D28009BB900B6B7DB /* FRDessertTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +511,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,7 +521,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -475,6 +540,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,7 +550,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
