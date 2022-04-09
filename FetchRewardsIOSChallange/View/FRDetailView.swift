@@ -29,6 +29,7 @@ class FRDetailView: UIView {
         let label = UILabel()
          label.text = "Empty text"
         label.numberOfLines = 0
+         label.minimumScaleFactor = 0.9
         label.font = .systemFont(ofSize: 14, weight: .light)
         return label
     }()
@@ -37,9 +38,14 @@ class FRDetailView: UIView {
         let label = UILabel()
          label.text = "Dummy text"
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 14, weight: .bold)
         return label
     }()
+    let scrollView:UIScrollView = {
+       let scrollView = UIScrollView()
+        scrollView.isScrollEnabled = true
+       return scrollView
+   }()
     
     required init?(coder: NSCoder) {
         fatalError()
@@ -52,6 +58,7 @@ class FRDetailView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = true
         setUpView()
         setUpConstraintsDessertImageView()
+        setUpConstraintsScrollView()
         setUpConstraintsIngredientsLabel()
         setUpConstraintsInstructionsLabel()
         
@@ -62,20 +69,28 @@ class FRDetailView: UIView {
         //dessertImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         //dessertImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
         dessertImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        dessertImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        dessertImageView.heightAnchor.constraint(equalToConstant: frame.height/3).isActive = true
         dessertImageView.widthAnchor.constraint(equalTo: dessertImageView.heightAnchor, multiplier:  9/9).isActive = true
 
 
     }
     
-   
+    func setUpConstraintsScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.topAnchor.constraint(equalTo: dessertImageView.bottomAnchor, constant: 10).isActive = true
+        scrollView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
+        
+ 
+    }
     
     
     func setUpConstraintsIngredientsLabel() {
         ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
-        ingredientsLabel.topAnchor.constraint(equalTo: dessertImageView.bottomAnchor, constant: 10).isActive = true
+        ingredientsLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10).isActive = true
         ingredientsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        ingredientsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        ingredientsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
  
     }
     
@@ -90,8 +105,9 @@ class FRDetailView: UIView {
     
     func setUpView() {
         self.addSubview(dessertImageView)
-        self.addSubview(instructionsLabel)
-        self.addSubview(ingredientsLabel)
+        self.addSubview(scrollView)
+        scrollView.addSubview(instructionsLabel)
+        scrollView.addSubview(ingredientsLabel)
     }
     
     func configure(with viewModel:FRDetailViewModel) {
