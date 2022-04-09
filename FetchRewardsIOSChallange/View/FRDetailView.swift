@@ -113,7 +113,7 @@ class FRDetailView: UIView {
     func configure(with viewModel:FRDetailViewModel) {
         instructionsLabel.text = viewModel.instructions
         ingredientsLabel.text = viewModel.ingredients
-        print(viewModel.title)
+        //print(viewModel.title)
         
         if let data = viewModel.imageData {
             dessertImageView.image = UIImage(data: data)

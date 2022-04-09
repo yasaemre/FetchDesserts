@@ -39,7 +39,7 @@ class DetailVC:UIViewController {
                         self?.title = title
                     }
                     if let ingredients = meal.first?.ingredients {
-                        
+                        //
                         self?.detailView.ingredientsLabel.text = ingredients
                     }
                     if let urlString = meal.first?.mealThumb {

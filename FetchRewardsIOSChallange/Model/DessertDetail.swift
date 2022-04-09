@@ -25,9 +25,11 @@ struct DessertsById: Decodable {
         case mealThumb = "strMealThumb"
         case id = "idMeal"
         case instructions = "strInstructions"
-        case ingredients = "strIngredient1"
+        case ingredients = "strIngredient3"
         case measures = "strMeasure1"
     }
+    
+   
 }
     
     
