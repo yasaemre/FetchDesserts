@@ -15,12 +15,13 @@ class FRDetailView: UIView {
     
      let dessertImageView:UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .darkGray
+        //imageView.backgroundColor = .darkGray
         imageView.clipsToBounds = true
         imageView.image = UIImage(named:"noFoodFound")!
-        imageView.layer.masksToBounds = true
+         //imageView.alpha = 0.7
+        //imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 10
-        imageView.contentMode = .scaleToFill
+        //imageView.contentMode = .scaleToFill
         return imageView
     }()
     
@@ -44,6 +45,7 @@ class FRDetailView: UIView {
         fatalError()
     }
     
+   
     
     override init(frame:CGRect) {
         super.init(frame: frame)
@@ -52,36 +54,36 @@ class FRDetailView: UIView {
         setUpConstraintsDessertImageView()
         setUpConstraintsIngredientsLabel()
         setUpConstraintsInstructionsLabel()
+        
     }
     func setUpConstraintsDessertImageView() {
         dessertImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        dessertImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        dessertImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        dessertImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        
-       // dessertImageView.bottomAnchor.constraint(equalTo: ingredientsLabel.topAnchor, constant: 50).isActive = true
+        dessertImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        //dessertImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        //dessertImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
+        dessertImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        dessertImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        dessertImageView.widthAnchor.constraint(equalTo: dessertImageView.heightAnchor, multiplier:  9/9).isActive = true
+
+
     }
+    
+   
     
     
     func setUpConstraintsIngredientsLabel() {
         ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
-        ingredientsLabel.topAnchor.constraint(equalTo: dessertImageView.bottomAnchor, constant: 1).isActive = true
-       //ingredientsLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        ingredientsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
         ingredientsLabel.topAnchor.constraint(equalTo: dessertImageView.bottomAnchor, constant: 10).isActive = true
-        ingredientsLabel.leftAnchor.constraint(equalTo: dessertImageView.leftAnchor, constant: 0).isActive = true
+        ingredientsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        ingredientsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+ 
     }
     
     func setUpConstraintsInstructionsLabel() {
-        instructionsLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
-        instructionsLabel.topAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor, constant: 1).isActive = true
-        instructionsLabel.leftAnchor.constraint(equalTo: dessertImageView.leftAnchor, constant: 0).isActive = true
-        //instructionsLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        instructionsLabel.topAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor, constant: 30).isActive = true
-        instructionsLabel.leftAnchor.constraint(equalTo: ingredientsLabel.leftAnchor, constant: 0).isActive = true
-        instructionsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+        instructionsLabel.topAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor, constant: 10).isActive = true
+        instructionsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        instructionsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
     }
     
     

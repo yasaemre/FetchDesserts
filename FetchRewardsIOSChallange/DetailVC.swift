@@ -18,11 +18,6 @@ class DetailVC:UIViewController {
         super.viewDidLoad()
         view.addSubview(detailView)
         view.backgroundColor = .systemBackground
-        //var mealdId = 0 //updata
-        //print(fetchDessertsById())
-        
-//        self.navigationController?.isNavigationBarHidden = true
-        
         
     }
     
