@@ -56,7 +56,7 @@ class FRDessertTableViewCell: UITableViewCell {
         dessertImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         dessertImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         //dessertImageView.heightAnchor.constraint(equalToConstant: frame.height/3).isActive = true
-        dessertImageView.widthAnchor.constraint(equalTo: dessertImageView.heightAnchor, multiplier:  9/9).isActive = true
+        dessertImageView.widthAnchor.constraint(equalTo: dessertImageView.heightAnchor, multiplier:  1).isActive = true
 
 
     }
@@ -67,7 +67,7 @@ class FRDessertTableViewCell: UITableViewCell {
         dessertTitle.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         dessertTitle.trailingAnchor.constraint(equalTo: dessertImageView.leadingAnchor, constant: 20).isActive = true
         dessertTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        dessertTitle.widthAnchor.constraint(equalTo: dessertTitle.heightAnchor, multiplier:  14/9).isActive = true
+       // dessertTitle.widthAnchor.constraint(equalTo: dessertTitle.heightAnchor, multiplier:  14/9).isActive = true
  
     }
     
