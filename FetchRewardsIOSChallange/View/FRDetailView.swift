@@ -59,7 +59,8 @@ class FRDetailView: UIView {
         dessertImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         dessertImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         dessertImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        dessertImageView.bottomAnchor.constraint(equalTo: ingredientsLabel.topAnchor, constant: 50).isActive = true
+        
+       // dessertImageView.bottomAnchor.constraint(equalTo: ingredientsLabel.topAnchor, constant: 50).isActive = true
     }
     
     
