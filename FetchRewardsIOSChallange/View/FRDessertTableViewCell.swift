@@ -14,7 +14,7 @@ class FRDessertTableViewCell: UITableViewCell {
     private let dessertTitle:UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 22, weight: .medium)
+        label.font = .systemFont(ofSize: 22, weight: .regular)
         return label
     }()
     
@@ -39,15 +39,36 @@ class FRDessertTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        dessertTitle.frame = CGRect(x: 10, y: 0, width: contentView.frame.size.width - 120, height: contentView.frame.size.height / 2)
-        
-        dessertImageView.frame = CGRect(x: contentView.frame.size.width-160, y: 5, width: 190, height: contentView.frame.size.height - 10)
+        setUpConstraintsDessertImageView()
+        setUpConstraintsDessertTitle()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         dessertTitle.text = nil
         dessertImageView.image = nil
+    }
+    
+    func setUpConstraintsDessertImageView() {
+        dessertImageView.translatesAutoresizingMaskIntoConstraints = false
+        dessertImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        //dessertImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        dessertImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        dessertImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        //dessertImageView.heightAnchor.constraint(equalToConstant: frame.height/3).isActive = true
+        dessertImageView.widthAnchor.constraint(equalTo: dessertImageView.heightAnchor, multiplier:  9/9).isActive = true
+
+
+    }
+    
+    func setUpConstraintsDessertTitle() {
+        dessertTitle.translatesAutoresizingMaskIntoConstraints = false
+        dessertTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        dessertTitle.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        dessertTitle.trailingAnchor.constraint(equalTo: dessertImageView.leadingAnchor, constant: 20).isActive = true
+        dessertTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        dessertTitle.widthAnchor.constraint(equalTo: dessertTitle.heightAnchor, multiplier:  14/9).isActive = true
+ 
     }
     
     func configure(with viewModel:FRDessertTVCellViewModel) {
