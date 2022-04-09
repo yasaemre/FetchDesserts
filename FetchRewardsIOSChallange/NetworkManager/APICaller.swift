@@ -86,5 +86,42 @@ final class APICaller {
         task.resume()
     }
 
+    func fetchDessert(for id: Int, completed: @escaping (Result<[DessertsById], FRError>) -> Void) {
+        let endpoint = baseURL + "/api/json/v1/1/lookup.php?i=\(id)"
+        
+        guard let url = URL(string: endpoint) else {
+            completed(.failure(.invalidUrl))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let dessert = try decoder.decode(APIResponseForDessert.self, from: data)
+                completed(.success(dessert.meals))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
 
 }

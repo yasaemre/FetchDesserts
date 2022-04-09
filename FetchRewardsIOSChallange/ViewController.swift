@@ -94,6 +94,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         //let meal = meals[indexPath.row]
         let detailVC = DetailVC()
         self.navigationController?.pushViewController(detailVC, animated: true)
+
+        detailVC.detailView.mealID = Int(viewModels[indexPath.row].idMeal) ?? 52976
+        //print(detailView.mealID)
         tableView.deselectRow(at: indexPath, animated: true)
         
     }

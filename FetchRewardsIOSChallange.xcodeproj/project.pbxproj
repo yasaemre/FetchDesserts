@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6275FA02800E2FC00A73D45 /* FRDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6275F9F2800E2FC00A73D45 /* FRDetailView.swift */; };
+		C6275FA22800F3C700A73D45 /* FRDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6275FA12800F3C700A73D45 /* FRDetailViewModel.swift */; };
 		C6F49E63280091A700B6B7DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E62280091A700B6B7DB /* AppDelegate.swift */; };
 		C6F49E65280091A700B6B7DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E64280091A700B6B7DB /* SceneDelegate.swift */; };
 		C6F49E67280091A700B6B7DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E66280091A700B6B7DB /* ViewController.swift */; };
@@ -22,6 +24,7 @@
 		C6F49E9D28009BB900B6B7DB /* FRDessertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E9C28009BB900B6B7DB /* FRDessertTableViewCell.swift */; };
 		C6F49EA028009C8D00B6B7DB /* FRDessertTVCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E9F28009C8D00B6B7DB /* FRDessertTVCellViewModel.swift */; };
 		C6F49EA22800A74B00B6B7DB /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49EA12800A74B00B6B7DB /* DetailVC.swift */; };
+		C6F49EA62800DC4800B6B7DB /* DessertDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49EA52800DC4800B6B7DB /* DessertDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C6275F9F2800E2FC00A73D45 /* FRDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDetailView.swift; sourceTree = "<group>"; };
+		C6275FA12800F3C700A73D45 /* FRDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDetailViewModel.swift; sourceTree = "<group>"; };
 		C6F49E5F280091A700B6B7DB /* FetchRewardsIOSChallange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchRewardsIOSChallange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F49E62280091A700B6B7DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6F49E64280091A700B6B7DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +66,7 @@
 		C6F49E9C28009BB900B6B7DB /* FRDessertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDessertTableViewCell.swift; sourceTree = "<group>"; };
 		C6F49E9F28009C8D00B6B7DB /* FRDessertTVCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDessertTVCellViewModel.swift; sourceTree = "<group>"; };
 		C6F49EA12800A74B00B6B7DB /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		C6F49EA52800DC4800B6B7DB /* DessertDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DessertDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F49E992800966500B6B7DB /* Desserts.swift */,
+				C6F49EA52800DC4800B6B7DB /* DessertDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F49E9C28009BB900B6B7DB /* FRDessertTableViewCell.swift */,
+				C6275F9F2800E2FC00A73D45 /* FRDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F49E9F28009C8D00B6B7DB /* FRDessertTVCellViewModel.swift */,
+				C6275FA12800F3C700A73D45 /* FRDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -321,10 +330,13 @@
 				C6F49E67280091A700B6B7DB /* ViewController.swift in Sources */,
 				C6F49E63280091A700B6B7DB /* AppDelegate.swift in Sources */,
 				C6F49E65280091A700B6B7DB /* SceneDelegate.swift in Sources */,
+				C6275FA22800F3C700A73D45 /* FRDetailViewModel.swift in Sources */,
 				C6F49EA22800A74B00B6B7DB /* DetailVC.swift in Sources */,
 				C6F49E972800961100B6B7DB /* FRError.swift in Sources */,
+				C6F49EA62800DC4800B6B7DB /* DessertDetail.swift in Sources */,
 				C6F49E94280094D700B6B7DB /* APICaller.swift in Sources */,
 				C6F49E9D28009BB900B6B7DB /* FRDessertTableViewCell.swift in Sources */,
+				C6275FA02800E2FC00A73D45 /* FRDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
