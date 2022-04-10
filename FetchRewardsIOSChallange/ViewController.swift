@@ -97,11 +97,7 @@ extension ViewController: UISearchBarDelegate {
                 self?.meals = meals
                 self?.isFiltered = true
                 self?.filteredViewModels = meals.compactMap({
-                    FRDessertTVCellViewModel(
-                        title: $0.name ?? "No Name",
-                        imageURL: URL(string: $0.urlToImage ?? ""),
-                        idMeal: $0.idMeal
-                    )
+                    FRDessertTVCellViewModel(meals: $0)
                 })
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
@@ -120,9 +116,7 @@ extension ViewController: UISearchBarDelegate {
                 self?.meals = meals
                 self?.viewModels = meals.compactMap({
                     FRDessertTVCellViewModel(
-                        title: $0.name ?? "No Name",
-                        imageURL: URL(string: $0.urlToImage ?? ""),
-                        idMeal: $0.idMeal
+                        meals: $0
                     )
                 })
                 DispatchQueue.main.async {

@@ -33,7 +33,7 @@ class DetailVC:UIViewController {
             case.success(let meal):
                 //print(meal)
                 self?.mealViewModel = meal.compactMap({
-                    FRDetailViewModel(title: $0.name, imageURL: URL(string: $0.urlToImage ), idMeal: $0.id, ingredients: $0.getIngredients(), instructions: $0.instructions)
+                    FRDetailViewModel(dessert: $0)
                 })
                 
                 DispatchQueue.main.async {

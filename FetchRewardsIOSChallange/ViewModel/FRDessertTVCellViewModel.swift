@@ -13,9 +13,10 @@ class FRDessertTVCellViewModel {
     let idMeal:String
     var imageData:Data? = nil
     
-    init(title:String?, imageURL:URL?, idMeal:String) {
-        self.title = title
-        self.imageURL = imageURL
-        self.idMeal = idMeal
+    //Dependency Injection
+    init(meals: Meals) {
+        self.title = meals.name
+        self.imageURL = URL(string: meals.urlToImage ?? "")
+        self.idMeal = meals.idMeal
     }
 }

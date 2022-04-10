@@ -15,11 +15,12 @@ class FRDetailViewModel {
     let instructions:String?
     var imageData:Data? = nil
     
-    init(title:String?, imageURL:URL?, idMeal:String, ingredients:String?, instructions:String?) {
-        self.title = title
-        self.imageURL = imageURL
-        self.idMeal = idMeal
-        self.ingredients = ingredients
-        self.instructions = instructions
+    //Dependency Injection
+    init(dessert: DessertsById) {
+        self.title = dessert.name
+        self.imageURL = URL(string: dessert.urlToImage)
+        self.idMeal = dessert.id
+        self.ingredients = dessert.getIngredients()
+        self.instructions = dessert.instructions
     }
 }
