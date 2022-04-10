@@ -16,7 +16,7 @@ struct DessertsById: Decodable {
     var name:String
     var id:String
     var instructions:String
-    var mealThumb:String
+    var urlToImage:String
     var measures:String?
     var ing1: String?
     var ing2: String?
@@ -42,7 +42,7 @@ struct DessertsById: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case name = "strMeal"
-        case mealThumb = "strMealThumb"
+        case urlToImage = "strMealThumb"
         case id = "idMeal"
         case instructions = "strInstructions"
         case measures = "strMeasure1"

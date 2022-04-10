@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         
         fetchDesserts()
         createSearchBar()
+       
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,29 +42,6 @@ class ViewController: UIViewController {
         navigationItem.searchController = searchVC
         searchVC.searchBar.delegate = self
     }
-    
-    func fetchDesserts() {
-        APICaller.shared.fetchDesserts { [weak self] result in
-            switch result {
-            case.success(let meals):
-                self?.meals = meals
-                self?.viewModels = meals.compactMap({
-                    FRDessertTVCellViewModel(
-                        title: $0.name ?? "No Name",
-                        imageURL: URL(string: $0.urlToImage ?? ""),
-                        idMeal: $0.idMeal
-                    )
-                })
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
-
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -129,8 +107,29 @@ extension ViewController: UISearchBarDelegate {
                     self?.tableView.reloadData()
                     self?.searchVC.dismiss(animated: true, completion: nil)
                 }
-            case .failure(let error):
+            case .failure( _ ):
                 fatalError()
+            }
+        }
+    }
+    
+    func fetchDesserts() {
+        APICaller.shared.fetchDesserts { [weak self] result in
+            switch result {
+            case.success(let meals):
+                self?.meals = meals
+                self?.viewModels = meals.compactMap({
+                    FRDessertTVCellViewModel(
+                        title: $0.name ?? "No Name",
+                        imageURL: URL(string: $0.urlToImage ?? ""),
+                        idMeal: $0.idMeal
+                    )
+                })
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }

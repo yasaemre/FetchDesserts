@@ -150,17 +150,17 @@ class FRDetailView: UIView {
         scrollView.addSubview(ingredientsLabel)
     }
     
-    func configure(with viewModel:FRDetailViewModel) {
-        instructionsLabel.text = viewModel.instructions
-        ingredientsLabel.text = viewModel.ingredients
-        if let data = viewModel.imageData {
+    func configure(with viewModel:[FRDetailViewModel]) {
+        instructionsLabel.text = viewModel.first?.instructions
+        ingredientsLabel.text = viewModel.first?.ingredients
+        if let data = viewModel.first?.imageData {
             dessertImageView.image = UIImage(data: data)
-        } else if let url = viewModel.imageURL {
+        } else if let url = viewModel.first?.imageURL {
             URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
                 guard let data = data, error == nil else {
                     return
                 }
-                viewModel.imageData = data
+                viewModel.first?.imageData = data
                 DispatchQueue.main.async {
                     self?.dessertImageView.image = UIImage(data: data)
                 }

@@ -11,52 +11,41 @@ import UIKit
 class DetailVC:UIViewController {
     let detailView = FRDetailView(frame: UIScreen.main.bounds)
     //private var viewModel: FRDetailViewModel
-    var viewModel: FRDetailViewModel!
-    var meal = [DessertsById]()
+    //var viewModel: FRDetailViewModel!
+    var mealViewModel = [FRDetailViewModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
         view.backgroundColor = .systemBackground
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchDessertsById()
+        
     }
     
     func fetchDessertsById() {
         APICaller.shared.fetchDessert(for: detailView.mealID) { [weak self] result in
             switch result {
             case.success(let meal):
-                self?.meal = meal
+                //print(meal)
+                self?.mealViewModel = meal.compactMap({
+                    FRDetailViewModel(title: $0.name, imageURL: URL(string: $0.urlToImage ), idMeal: $0.id, ingredients: $0.getIngredients(), instructions: $0.instructions)
+                })
+                
                 DispatchQueue.main.async {
                     
                     if let title = (meal.first?.name) {
                         self?.title = title
                     }
-                    if let ingredients = meal.first?.getIngredients() {
-                        self?.detailView.ingredientsLabel.text = ingredients
-                    }
-                    if let urlString = meal.first?.mealThumb {
-                        if let imageUrl = URL(string: urlString) {
-                            if let imageData = try? Data(contentsOf: imageUrl) {
-                                if let image = UIImage(data: imageData) {
-                                    self?.detailView.dessertImageView.image = image
-                                }
-                            }
-                        }
-                    }
-                    
-                    
-                    
-                    if let instructions = meal.first?.instructions {
-                        
-                        self?.detailView.instructionsLabel.text = instructions
-                    }
+                   
+                    self?.detailView.configure(with: self?.mealViewModel ?? [])
                 }
                 
-            case .failure(let error):
+            case .failure(_):
                 fatalError()
             }
         }
