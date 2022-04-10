@@ -20,7 +20,6 @@ class FRDetailView: UIView {
     
     lazy var instructionsLabel:UILabel = {
         let label = UILabel()
-        label.text = "No instructions"
         label.numberOfLines = 0
         label.minimumScaleFactor = 0.9
         label.font = .systemFont(ofSize: 16, weight: .regular)
@@ -46,7 +45,6 @@ class FRDetailView: UIView {
     
     lazy var ingredientsLabel:UILabel = {
         let label = UILabel()
-        label.text = "Dummy text"
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 16, weight: .regular)
         return label
@@ -133,7 +131,7 @@ class FRDetailView: UIView {
     
     func setUpConstraintsIngredientsLabel() {
         ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
-        ingredientsLabel.topAnchor.constraint(equalTo: ingredientsTitleLabel.topAnchor, constant: 20).isActive = true
+        ingredientsLabel.topAnchor.constraint(equalTo: ingredientsTitleLabel.topAnchor, constant: 30).isActive = true
     }
     
     func setUpConstraintsInstructionsLabel() {

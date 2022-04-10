@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class DetailVC:UIViewController {
-   // static let reuseId = "DetailVC"
     let detailView = FRDetailView(frame: UIScreen.main.bounds)
     //private var viewModel: FRDetailViewModel
     var viewModel: FRDetailViewModel!
@@ -27,19 +26,16 @@ class DetailVC:UIViewController {
     }
     
     func fetchDessertsById() {
-        print(detailView.mealID)
         APICaller.shared.fetchDessert(for: detailView.mealID) { [weak self] result in
             switch result {
             case.success(let meal):
-                print(meal)
                 self?.meal = meal
                 DispatchQueue.main.async {
                     
                     if let title = (meal.first?.name) {
                         self?.title = title
                     }
-                    if let ingredients = meal.first?.ingredients {
-                        //
+                    if let ingredients = meal.first?.getIngredients() {
                         self?.detailView.ingredientsLabel.text = ingredients
                     }
                     if let urlString = meal.first?.mealThumb {
@@ -61,7 +57,7 @@ class DetailVC:UIViewController {
                 }
                 
             case .failure(let error):
-                print(error)
+                fatalError()
             }
         }
     }

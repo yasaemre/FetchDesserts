@@ -37,7 +37,6 @@ final class APICaller {
             
             do {
                 let result = try JSONDecoder().decode(APIResponse.self, from: data)
-                print("Desserts: \(result.meals.count)")
                 completed(.success(result.meals))
             } catch {
                 completed(.failure(.invalidData))
@@ -75,7 +74,6 @@ final class APICaller {
             
             do {
                 let result = try JSONDecoder().decode(APIResponse.self, from: data)
-                print("Desserts: \(result.meals.count)")
                 completed(.success(result.meals))
             } catch {
                 completed(.failure(.invalidData))

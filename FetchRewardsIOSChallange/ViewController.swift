@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     private var filteredViewModels = [FRDessertTVCellViewModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         title = "Desserts"
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
@@ -80,7 +79,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FRDessertTableViewCell.reusId, for: indexPath) as? FRDessertTableViewCell else {
             fatalError()
         }
-        //cell.configure(with: viewModels[indexPath.row])
         if isFiltered {
             cell.configure(with: filteredViewModels[indexPath.row])
         } else {
@@ -91,12 +89,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //let meal = meals[indexPath.row]
         let detailVC = DetailVC()
         self.navigationController?.pushViewController(detailVC, animated: true)
 
-        detailVC.detailView.mealID = Int(viewModels[indexPath.row].idMeal) ?? 52976
-        //print(detailView.mealID)
+        detailVC.detailView.mealID = isFiltered ? Int(filteredViewModels[indexPath.row].idMeal) ?? 34543 :                          Int(viewModels[indexPath.row].idMeal) ?? 34543
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
@@ -134,7 +130,7 @@ extension ViewController: UISearchBarDelegate {
                     self?.searchVC.dismiss(animated: true, completion: nil)
                 }
             case .failure(let error):
-                print(error)
+                fatalError()
             }
         }
     }
