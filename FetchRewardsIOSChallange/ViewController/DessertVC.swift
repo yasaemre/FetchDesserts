@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DessertVC: UIViewController {
 
     private let tableView:UITableView = {
         let tableView = UITableView()
@@ -16,26 +16,25 @@ class ViewController: UIViewController {
     }()
     
     private let searchVC = UISearchController(searchResultsController: nil)
-    var isFiltered = false
-    private var viewModels = [FRDessertTVCellViewModel]()
+    private var isFiltered = false
+    private var viewModels = [FRDessertCellViewModel]()
+    private var filteredViewModels = [FRDessertCellViewModel]()
     private var meals = [Meals]()
-    private var filteredViewModels = [FRDessertTVCellViewModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
+        fetchDesserts()
+        createSearchBar()
+    }
+    
+    private func setUpTableView() {
         title = "Desserts"
         view.backgroundColor = .systemBackground
+        tableView.frame = view.bounds
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
-        fetchDesserts()
-        createSearchBar()
-       
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
     }
     
     private func createSearchBar() {
@@ -44,7 +43,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension DessertVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltered {
             return filteredViewModels.count
@@ -67,12 +66,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let detailVC = DetailVC()
+        let detailVC = DessertDetailVC()
         self.navigationController?.pushViewController(detailVC, animated: true)
-
         detailVC.detailView.mealID = isFiltered ? Int(filteredViewModels[indexPath.row].idMeal) ?? 34543 :                          Int(viewModels[indexPath.row].idMeal) ?? 34543
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,49 +77,29 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ViewController: UISearchBarDelegate {
+extension DessertVC: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isFiltered = false
         tableView.reloadData()
     }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text, !text.isEmpty else {
             return
         }
-                
-        APICaller.shared.searchedDesserts(with: text) { [weak self] result in
-            switch result {
-            case.success(let meals):
-                self?.meals = meals
-                self?.isFiltered = true
-                self?.filteredViewModels = meals.compactMap({
-                    FRDessertTVCellViewModel(
-                        title: $0.name ?? "No Name",
-                        imageURL: URL(string: $0.urlToImage ?? ""),
-                        idMeal: $0.idMeal
-                    )
-                })
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                    self?.searchVC.dismiss(animated: true, completion: nil)
-                }
-            case .failure( _ ):
-                fatalError()
-            }
-        }
+        
+        searchedDesserts(search:text)
     }
     
-    func fetchDesserts() {
+    private func fetchDesserts() {
         APICaller.shared.fetchDesserts { [weak self] result in
             switch result {
             case.success(let meals):
                 self?.meals = meals
                 self?.viewModels = meals.compactMap({
-                    FRDessertTVCellViewModel(
-                        title: $0.name ?? "No Name",
-                        imageURL: URL(string: $0.urlToImage ?? ""),
-                        idMeal: $0.idMeal
+                    FRDessertCellViewModel(
+                        meals: $0
                     )
                 })
                 DispatchQueue.main.async {
@@ -130,6 +107,25 @@ extension ViewController: UISearchBarDelegate {
                 }
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    
+    private func searchedDesserts(search:String) {
+        APICaller.shared.searchedDesserts(with: search) { [weak self] result in
+            switch result {
+            case.success(let meals):
+                self?.meals = meals
+                self?.isFiltered = true
+                self?.filteredViewModels = meals.compactMap({
+                    FRDessertCellViewModel(meals: $0)
+                })
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.searchVC.dismiss(animated: true, completion: nil)
+                }
+            case .failure( _ ):
+                fatalError()
             }
         }
     }

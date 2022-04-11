@@ -32,5 +32,23 @@ class FetchRewardsIOSChallangeTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testFRDessetMealModel() {
+        let meal = Meals(name: "Apam balik", urlToImage: "https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert", idMeal: "53049")
+        let dessertTVViewModel = FRDessertCellViewModel(meals: meal)
+
+        XCTAssertEqual(meal.name, dessertTVViewModel.title)
+        XCTAssertEqual(URL(string: meal.urlToImage ?? ""), dessertTVViewModel.imageURL)
+        XCTAssertEqual(meal.idMeal, dessertTVViewModel.idMeal)
+    }
+    
+    func testFRDetailViewModel() {
+        let dessertById = DessertsById(name: "Tart", id: "324", instructions: "fdsf sdfk fsd ", urlToImage: "https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert")
+        let dessertDetailViewModel = FRDetailByIdViewModel(dessert: dessertById)
+        
+        XCTAssertEqual(dessertById.name, dessertDetailViewModel.title)
+        XCTAssertEqual(dessertById.id, dessertDetailViewModel.idMeal)
+        XCTAssertEqual(URL(string: dessertById.urlToImage), dessertDetailViewModel.imageURL)
+    }
 
 }

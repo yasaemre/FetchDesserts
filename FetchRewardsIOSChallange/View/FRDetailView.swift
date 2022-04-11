@@ -10,15 +10,14 @@ import UIKit
 class FRDetailView: UIView {
     var mealID:Int = 0
     
-    
-    lazy var dessertImageView:UIImageView = {
+    private lazy var dessertImageView:UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         return imageView
     }()
     
-    lazy var instructionsLabel:UILabel = {
+    private lazy var instructionsLabel:UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.minimumScaleFactor = 0.9
@@ -43,7 +42,7 @@ class FRDetailView: UIView {
         return label
     }()
     
-    lazy var ingredientsLabel:UILabel = {
+    private lazy var ingredientsLabel:UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 16, weight: .regular)
@@ -123,36 +122,31 @@ class FRDetailView: UIView {
     }
     
     func setUpConstraintsDessertImageView() {
-        dessertImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        dessertImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        dessertImageView.heightAnchor.constraint(equalToConstant: self.frame.height / 3).isActive = true
-        dessertImageView.widthAnchor.constraint(equalToConstant: self.frame.height / 3).isActive = true
+        NSLayoutConstraint.activate([
+            dessertImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            dessertImageView.heightAnchor.constraint(equalToConstant: self.frame.height / 3),
+            dessertImageView.widthAnchor.constraint(equalToConstant: self.frame.height / 3)
+        ])
+        
     }
     
     func setUpConstraintsIngredientsLabel() {
-        ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
-        ingredientsLabel.topAnchor.constraint(equalTo: ingredientsTitleLabel.topAnchor, constant: 30).isActive = true
+        NSLayoutConstraint.activate([
+            ingredientsLabel.topAnchor.constraint(equalTo: ingredientsTitleLabel.topAnchor, constant: 30)
+        ])
     }
     
     func setUpConstraintsInstructionsLabel() {
-        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
-        instructionsLabel.topAnchor.constraint(equalTo: instructionsTitleLabel.bottomAnchor, constant: 10).isActive = true
-        instructionsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        instructionsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        NSLayoutConstraint.activate([
+            instructionsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            instructionsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        ])
     }
     
-    
-    
-    func setUpView() {
-        self.addSubview(dessertImageView)
-        self.addSubview(scrollView)
-        scrollView.addSubview(instructionsLabel)
-        scrollView.addSubview(ingredientsLabel)
-    }
-    
-    func configure(with viewModel:[FRDetailViewModel]) {
+    func configure(with viewModel:[FRDetailByIdViewModel]) {
         instructionsLabel.text = viewModel.first?.instructions
         ingredientsLabel.text = viewModel.first?.ingredients
+        
         if let data = viewModel.first?.imageData {
             dessertImageView.image = UIImage(data: data)
         } else if let url = viewModel.first?.imageURL {
