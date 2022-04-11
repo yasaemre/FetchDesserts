@@ -10,7 +10,7 @@ import Foundation
 final class APICaller {
     static let shared = APICaller()
     
-    let baseURL         = "https://www.themealdb.com"
+    let baseURL = "https://www.themealdb.com"
     
     private init() {}
     
@@ -121,5 +121,4 @@ final class APICaller {
         
         task.resume()
     }
-
 }

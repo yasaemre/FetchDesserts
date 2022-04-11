@@ -1,5 +1,5 @@
 //
-//  FRDessertTVCellViewModel.swift
+//  FRDessertCellViewModel.swift
 //  FetchRewardsIOSChallange
 //
 //  Created by Emre Yasa on 4/8/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FRDessertTVCellViewModel {
+class FRDessertCellViewModel {
     let title:String?
     let imageURL:URL?
     let idMeal:String

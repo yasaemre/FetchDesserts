@@ -1,5 +1,5 @@
 //
-//  FRDetailViewModel.swift
+//  FRDetailByIdViewModel.swift
 //  FetchRewardsIOSChallange
 //
 //  Created by Emre Yasa on 4/8/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FRDetailViewModel {
+class FRDetailByIdViewModel {
     let title:String?
     let imageURL:URL?
     let idMeal:String

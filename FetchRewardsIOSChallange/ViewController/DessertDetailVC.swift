@@ -1,43 +1,40 @@
 //
 //  DetailVC.swift
-//  FetchRewardsIOSCodingChallange
+//  FetchRewardsIOSChallange
 //
-//  Created by Emre Yasa on 4/6/22.
+//  Created by Emre Yasa on 4/8/22.
 //
 
 import Foundation
 import UIKit
 
-class DetailVC:UIViewController {
+class DessertDetailVC:UIViewController {
     let detailView = FRDetailView(frame: UIScreen.main.bounds)
-    //private var viewModel: FRDetailViewModel
-    //var viewModel: FRDetailViewModel!
-    var mealViewModel = [FRDetailViewModel]()
+    var mealViewModel = [FRDetailByIdViewModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(detailView)
-        view.backgroundColor = .systemBackground
-        
-        
+        setUPDetailView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchDessertsById()
-        
+        fetchDessertById()
     }
     
-    func fetchDessertsById() {
+    private func setUPDetailView() {
+        view.addSubview(detailView)
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func fetchDessertById() {
         APICaller.shared.fetchDessert(for: detailView.mealID) { [weak self] result in
             switch result {
             case.success(let meal):
-                //print(meal)
                 self?.mealViewModel = meal.compactMap({
-                    FRDetailViewModel(dessert: $0)
+                    FRDetailByIdViewModel(dessert: $0)
                 })
                 
                 DispatchQueue.main.async {
-                    
                     if let title = (meal.first?.name) {
                         self?.title = title
                     }
@@ -50,9 +47,4 @@ class DetailVC:UIViewController {
             }
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        
-    }
-
 }

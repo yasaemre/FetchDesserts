@@ -17,7 +17,6 @@ struct DessertsById: Decodable {
     var id:String
     var instructions:String
     var urlToImage:String
-    var measures:String?
     var ing1: String?
     var ing2: String?
     var ing3: String?
@@ -45,7 +44,6 @@ struct DessertsById: Decodable {
         case urlToImage = "strMealThumb"
         case id = "idMeal"
         case instructions = "strInstructions"
-        case measures = "strMeasure1"
         case ing1 = "strIngredient1"
         case ing2 = "strIngredient2"
         case ing3 = "strIngredient3"

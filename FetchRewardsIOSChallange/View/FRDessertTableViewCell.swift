@@ -11,14 +11,14 @@ class FRDessertTableViewCell: UITableViewCell {
 
     static let reusId = "FRDessertTableViewCell"
     
-    private let dessertTitle:UILabel = {
+    private lazy var dessertTitle:UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 22, weight: .regular)
         return label
     }()
     
-    private let dessertImageView:UIImageView = {
+    private lazy var dessertImageView:UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .secondarySystemBackground
         imageView.clipsToBounds = true
@@ -31,44 +31,37 @@ class FRDessertTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(dessertTitle)
         contentView.addSubview(dessertImageView)
+        setUpConstraintsDessertImageView()
+        setUpConstraintsDessertTitle()
     }
     
     required init?(coder: NSCoder) {
         fatalError()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setUpConstraintsDessertImageView()
-        setUpConstraintsDessertTitle()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        dessertTitle.text = nil
-        dessertImageView.image = nil
-    }
-    
-    func setUpConstraintsDessertImageView() {
+    private func setUpConstraintsDessertImageView() {
         dessertImageView.translatesAutoresizingMaskIntoConstraints = false
-        dessertImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        dessertImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        dessertImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        dessertImageView.widthAnchor.constraint(equalTo: dessertImageView.heightAnchor, multiplier:  1).isActive = true
+        NSLayoutConstraint.activate([
+            dessertImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            dessertImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            dessertImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            dessertImageView.widthAnchor.constraint(equalTo: dessertImageView.heightAnchor, multiplier:  1)
+        ])
     }
     
-    func setUpConstraintsDessertTitle() {
+    private func setUpConstraintsDessertTitle() {
         dessertTitle.translatesAutoresizingMaskIntoConstraints = false
-        dessertTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        dessertTitle.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        dessertTitle.trailingAnchor.constraint(equalTo: dessertImageView.leadingAnchor, constant: 20).isActive = true
-        dessertTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
- 
+        NSLayoutConstraint.activate([
+            dessertTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            dessertTitle.centerYAnchor.constraint(equalTo: centerYAnchor),
+            dessertTitle.centerYAnchor.constraint(equalTo: centerYAnchor),
+            dessertTitle.trailingAnchor.constraint(equalTo: dessertImageView.leadingAnchor, constant: 20),
+            dessertTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20)
+        ])
     }
     
-    func configure(with viewModel:FRDessertTVCellViewModel) {
+    func configure(with viewModel:FRDessertCellViewModel) {
         dessertTitle.text = viewModel.title
-        
         if let data = viewModel.imageData {
             dessertImageView.image = UIImage(data: data)
         } else if let url = viewModel.imageURL {
@@ -76,7 +69,7 @@ class FRDessertTableViewCell: UITableViewCell {
                 guard let data = data, error == nil else {
                     return
                 }
-                viewModel.imageData = data
+                viewModel.imageData = data // Why do we store data in viewModel.imageData, I think for the next time use
                 DispatchQueue.main.async {
                     self?.dessertImageView.image = UIImage(data: data)
                 }
