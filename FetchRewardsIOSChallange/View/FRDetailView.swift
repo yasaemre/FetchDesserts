@@ -20,15 +20,17 @@ class FRDetailView: UIView {
     private lazy var ingredientsLabel:UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.textAlignment = .justified
+        label.font = .systemFont(ofSize: 20, weight: .regular)
         return label
     }()
     
     private lazy var instructionsLabel:UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.textAlignment = .justified
         label.minimumScaleFactor = 0.9
-        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.font = .systemFont(ofSize: 18, weight: .light)
         return label
     }()
     
@@ -126,8 +128,13 @@ class FRDetailView: UIView {
     }
     
     func configure(with viewModel:[FRDetailByIdViewModel]) {
-        instructionsLabel.text = viewModel.first?.instructions
-        ingredientsLabel.text = viewModel.first?.ingredients
+        
+        if let ingredients = viewModel.first?.ingredients {
+            ingredientsLabel.text = "Ingredients: \(ingredients)"
+        }
+        if let instructions = viewModel.first?.instructions {
+            instructionsLabel.text = "Instruction: \(instructions)"
+        }
         
         if let data = viewModel.first?.imageData {
             dessertImageView.image = UIImage(data: data)
