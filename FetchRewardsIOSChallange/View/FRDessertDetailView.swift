@@ -7,8 +7,12 @@
 
 import UIKit
 
-class FRDetailView: UIView {
-    var mealID:Int = 0
+class FRDessertDetailView: UIView {
+    
+    lazy var mealID:Int = {
+        let mealID = 0
+        return mealID
+    }()
     
     private lazy var dessertImageView:UIImageView = {
         let imageView = UIImageView()
@@ -66,9 +70,6 @@ class FRDetailView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = true
         configureSubviews()
         setupConstraints()
-        setUpConstraintsDessertImageView()
-        setUpConstraintsIngredientsLabel()
-        setUpConstraintsInstructionsLabel()
     }
     
     private func configureSubviews() {
@@ -81,6 +82,10 @@ class FRDetailView: UIView {
     }
     
     private func setupConstraints() {
+        setUpConstraintsDessertImageView()
+        setUpConstraintsIngredientsLabel()
+        setUpConstraintsInstructionsLabel()
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.topAnchor),
             scrollView.rightAnchor.constraint(equalTo: self.rightAnchor),
@@ -104,7 +109,7 @@ class FRDetailView: UIView {
         ])
     }
     
-    func setUpConstraintsDessertImageView() {
+    private func setUpConstraintsDessertImageView() {
         NSLayoutConstraint.activate([
             dessertImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             dessertImageView.heightAnchor.constraint(equalToConstant: self.frame.height / 3),
@@ -113,22 +118,22 @@ class FRDetailView: UIView {
         
     }
     
-    func setUpConstraintsIngredientsLabel() {
+    private func setUpConstraintsIngredientsLabel() {
         NSLayoutConstraint.activate([
             ingredientsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             ingredientsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
     
-    func setUpConstraintsInstructionsLabel() {
+    private func setUpConstraintsInstructionsLabel() {
         NSLayoutConstraint.activate([
             instructionsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             instructionsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
     
-    func configure(with viewModel:[FRDetailByIdViewModel]) {
-        
+    //Set the selected dessert to view with viewModel design pattern
+    func configure(with viewModel:[FRDessertDetailViewModel]) {
         if let ingredients = viewModel.first?.ingredients {
             ingredientsLabel.text = "Ingredients: \(ingredients)"
         }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FRDetailByIdViewModel {
+class FRDessertDetailViewModel {
     let title:String?
     let imageURL:URL?
     let idMeal:String

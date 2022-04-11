@@ -14,7 +14,7 @@ class FRDessertCellViewModel {
     var imageData:Data? = nil
     
     //Dependency Injection
-    init(meals: Meals) {
+    init(meals: Desserts) {
         self.title = meals.name
         self.imageURL = URL(string: meals.urlToImage ?? "")
         self.idMeal = meals.idMeal

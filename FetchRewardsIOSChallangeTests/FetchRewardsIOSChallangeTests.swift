@@ -34,7 +34,7 @@ class FetchRewardsIOSChallangeTests: XCTestCase {
     }
     
     func testFRDessetMealModel() {
-        let meal = Meals(name: "Apam balik", urlToImage: "https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert", idMeal: "53049")
+        let meal = Desserts(name: "Apam balik", urlToImage: "https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert", idMeal: "53049")
         let dessertTVViewModel = FRDessertCellViewModel(meals: meal)
 
         XCTAssertEqual(meal.name, dessertTVViewModel.title)
@@ -44,7 +44,7 @@ class FetchRewardsIOSChallangeTests: XCTestCase {
     
     func testFRDetailViewModel() {
         let dessertById = DessertsById(name: "Tart", id: "324", instructions: "fdsf sdfk fsd ", urlToImage: "https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert")
-        let dessertDetailViewModel = FRDetailByIdViewModel(dessert: dessertById)
+        let dessertDetailViewModel = FRDessertDetailViewModel(dessert: dessertById)
         
         XCTAssertEqual(dessertById.name, dessertDetailViewModel.title)
         XCTAssertEqual(dessertById.id, dessertDetailViewModel.idMeal)

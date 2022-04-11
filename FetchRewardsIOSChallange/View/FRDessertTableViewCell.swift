@@ -8,7 +8,6 @@
 import UIKit
 
 class FRDessertTableViewCell: UITableViewCell {
-
     static let reusId = "FRDessertTableViewCell"
     
     private lazy var dessertTitle:UILabel = {
@@ -60,6 +59,7 @@ class FRDessertTableViewCell: UITableViewCell {
         ])
     }
     
+    //Set the fetched desserts to the view with viewModel design pattern
     func configure(with viewModel:FRDessertCellViewModel) {
         dessertTitle.text = viewModel.title
         if let data = viewModel.imageData {
@@ -69,7 +69,7 @@ class FRDessertTableViewCell: UITableViewCell {
                 guard let data = data, error == nil else {
                     return
                 }
-                viewModel.imageData = data // Why do we store data in viewModel.imageData, I think for the next time use
+                viewModel.imageData = data
                 DispatchQueue.main.async {
                     self?.dessertImageView.image = UIImage(data: data)
                 }

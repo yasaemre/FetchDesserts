@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 
 class DessertDetailVC:UIViewController {
-    let detailView = FRDetailView(frame: UIScreen.main.bounds)
-    var mealViewModel = [FRDetailByIdViewModel]()
+    let detailView = FRDessertDetailView(frame: UIScreen.main.bounds)
+    var dessertViewModel = [FRDessertDetailViewModel]()
     let activityIndicator = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUPDetailView()
@@ -34,16 +35,16 @@ class DessertDetailVC:UIViewController {
         APICaller.shared.fetchDessert(for: detailView.mealID) { [weak self] result in
             switch result {
             case.success(let meal):
-                self?.mealViewModel = meal.compactMap({
-                    FRDetailByIdViewModel(dessert: $0)
+                self?.dessertViewModel = meal.compactMap({
+                    FRDessertDetailViewModel(dessert: $0)
                 })
                 
                 DispatchQueue.main.async {
                     if let title = (meal.first?.name) {
                         self?.title = title
                     }
-                   
-                    self?.detailView.configure(with: self?.mealViewModel ?? [])
+                    
+                    self?.detailView.configure(with: self?.dessertViewModel ?? [])
                     self?.activityIndicator.stopAnimating()
                     self?.view.isUserInteractionEnabled = true
                 }
@@ -53,7 +54,9 @@ class DessertDetailVC:UIViewController {
             }
         }
     }
-    
+}
+
+extension DessertDetailVC {
     private func loadActivityIndicator() {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true

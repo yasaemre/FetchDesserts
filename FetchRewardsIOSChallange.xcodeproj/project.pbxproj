@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C6275FA02800E2FC00A73D45 /* FRDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6275F9F2800E2FC00A73D45 /* FRDetailView.swift */; };
-		C6275FA22800F3C700A73D45 /* FRDetailByIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6275FA12800F3C700A73D45 /* FRDetailByIdViewModel.swift */; };
+		C6275FA02800E2FC00A73D45 /* FRDessertDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6275F9F2800E2FC00A73D45 /* FRDessertDetailView.swift */; };
+		C6275FA22800F3C700A73D45 /* FRDessertDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6275FA12800F3C700A73D45 /* FRDessertDetailViewModel.swift */; };
 		C6F49E63280091A700B6B7DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E62280091A700B6B7DB /* AppDelegate.swift */; };
 		C6F49E65280091A700B6B7DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E64280091A700B6B7DB /* SceneDelegate.swift */; };
 		C6F49E67280091A700B6B7DB /* DessertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F49E66280091A700B6B7DB /* DessertVC.swift */; };
@@ -45,8 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C6275F9F2800E2FC00A73D45 /* FRDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDetailView.swift; sourceTree = "<group>"; };
-		C6275FA12800F3C700A73D45 /* FRDetailByIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDetailByIdViewModel.swift; sourceTree = "<group>"; };
+		C6275F9F2800E2FC00A73D45 /* FRDessertDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDessertDetailView.swift; sourceTree = "<group>"; };
+		C6275FA12800F3C700A73D45 /* FRDessertDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRDessertDetailViewModel.swift; sourceTree = "<group>"; };
 		C6F49E5F280091A700B6B7DB /* FetchRewardsIOSChallange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchRewardsIOSChallange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F49E62280091A700B6B7DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6F49E64280091A700B6B7DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,13 +94,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C60E7B8C28047548008F7007 /* Extentions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extentions;
-			sourceTree = "<group>";
-		};
 		C641123F280346BD00EEF036 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +136,6 @@
 		C6F49E61280091A700B6B7DB /* FetchRewardsIOSChallange */ = {
 			isa = PBXGroup;
 			children = (
-				C60E7B8C28047548008F7007 /* Extentions */,
 				C64112402803ED1A00EEF036 /* Supporting Files */,
 				C6F49E982800965200B6B7DB /* Model */,
 				C6F49E9B28009B8200B6B7DB /* View */,
@@ -204,7 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F49E9C28009BB900B6B7DB /* FRDessertTableViewCell.swift */,
-				C6275F9F2800E2FC00A73D45 /* FRDetailView.swift */,
+				C6275F9F2800E2FC00A73D45 /* FRDessertDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F49E9F28009C8D00B6B7DB /* FRDessertCellViewModel.swift */,
-				C6275FA12800F3C700A73D45 /* FRDetailByIdViewModel.swift */,
+				C6275FA12800F3C700A73D45 /* FRDessertDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -354,13 +346,13 @@
 				C6F49E67280091A700B6B7DB /* DessertVC.swift in Sources */,
 				C6F49E63280091A700B6B7DB /* AppDelegate.swift in Sources */,
 				C6F49E65280091A700B6B7DB /* SceneDelegate.swift in Sources */,
-				C6275FA22800F3C700A73D45 /* FRDetailByIdViewModel.swift in Sources */,
+				C6275FA22800F3C700A73D45 /* FRDessertDetailViewModel.swift in Sources */,
 				C6F49EA22800A74B00B6B7DB /* DessertDetailVC.swift in Sources */,
 				C6F49E972800961100B6B7DB /* FRError.swift in Sources */,
 				C6F49EA62800DC4800B6B7DB /* DessertDetail.swift in Sources */,
 				C6F49E94280094D700B6B7DB /* APICaller.swift in Sources */,
 				C6F49E9D28009BB900B6B7DB /* FRDessertTableViewCell.swift in Sources */,
-				C6275FA02800E2FC00A73D45 /* FRDetailView.swift in Sources */,
+				C6275FA02800E2FC00A73D45 /* FRDessertDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

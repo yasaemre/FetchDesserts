@@ -8,7 +8,6 @@
 import UIKit
 
 class DessertVC: UIViewController {
-
     private let tableView:UITableView = {
         let tableView = UITableView()
         tableView.register(FRDessertTableViewCell.self, forCellReuseIdentifier: FRDessertTableViewCell.reusId)
@@ -19,7 +18,6 @@ class DessertVC: UIViewController {
     private var isFiltered = false
     private var viewModels = [FRDessertCellViewModel]()
     private var filteredViewModels = [FRDessertCellViewModel]()
-    private var meals = [Meals]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,12 +66,16 @@ extension DessertVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let detailVC = DessertDetailVC()
         self.navigationController?.pushViewController(detailVC, animated: true)
-        detailVC.detailView.mealID = isFiltered ? Int(filteredViewModels[indexPath.row].idMeal) ?? 34543 :                          Int(viewModels[indexPath.row].idMeal) ?? 34543
+        if isFiltered {
+            detailVC.detailView.mealID = Int(filteredViewModels[indexPath.row].idMeal) ?? 52772
+        } else {
+            detailVC.detailView.mealID = Int(viewModels[indexPath.row].idMeal) ?? 52772
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return view.frame.height / 5
     }
 }
 
@@ -96,7 +98,6 @@ extension DessertVC: UISearchBarDelegate {
         APICaller.shared.fetchDesserts { [weak self] result in
             switch result {
             case.success(let meals):
-                self?.meals = meals
                 self?.viewModels = meals.compactMap({
                     FRDessertCellViewModel(
                         meals: $0
@@ -115,7 +116,6 @@ extension DessertVC: UISearchBarDelegate {
         APICaller.shared.searchedDesserts(with: search) { [weak self] result in
             switch result {
             case.success(let meals):
-                self?.meals = meals
                 self?.isFiltered = true
                 self?.filteredViewModels = meals.compactMap({
                     FRDessertCellViewModel(meals: $0)

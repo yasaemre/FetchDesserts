@@ -14,7 +14,7 @@ final class APICaller {
     
     private init() {}
     
-    public func fetchDesserts(completed: @escaping (Result<[Meals], FRError>) -> Void) {
+    public func fetchDesserts(completed: @escaping (Result<[Desserts], FRError>) -> Void) {
         let endpoint = baseURL + "/api/json/v1/1/filter.php?c=Dessert"
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidUrl))
@@ -47,7 +47,7 @@ final class APICaller {
         task.resume()
     }
     
-    public func searchedDesserts(with query:String, completed: @escaping (Result<[Meals], FRError>) -> Void) {
+    public func searchedDesserts(with query:String, completed: @escaping (Result<[Desserts], FRError>) -> Void) {
         let endpoint = baseURL + "/api/json/v1/1/search.php?s="
         guard !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
@@ -83,7 +83,7 @@ final class APICaller {
         
         task.resume()
     }
-
+    
     func fetchDessert(for id: Int, completed: @escaping (Result<[DessertsById], FRError>) -> Void) {
         let endpoint = baseURL + "/api/json/v1/1/lookup.php?i=\(id)"
         

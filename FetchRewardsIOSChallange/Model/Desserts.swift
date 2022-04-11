@@ -8,10 +8,10 @@
 import Foundation
 
 struct APIResponse:Codable {
-    var meals: [Meals]
+    var meals: [Desserts]
 }
 
-struct Meals: Codable, Hashable {
+struct Desserts: Codable, Hashable {
     var name:String?
     var urlToImage:String?
     var idMeal:String
