@@ -17,35 +17,18 @@ class FRDetailView: UIView {
         return imageView
     }()
     
+    private lazy var ingredientsLabel:UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
+    
     private lazy var instructionsLabel:UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.minimumScaleFactor = 0.9
-        label.font = .systemFont(ofSize: 16, weight: .regular)
-        return label
-    }()
-    
-    private lazy var instructionsTitleLabel:UILabel = {
-        let label = UILabel()
-        label.text = "Instructions:"
-        label.numberOfLines = 0
-        label.minimumScaleFactor = 0.9
-        label.font = .systemFont(ofSize: 18, weight: .bold)
-        return label
-    }()
-    
-    private lazy var ingredientsTitleLabel:UILabel = {
-        let label = UILabel()
-        label.text = "Ingredients: "
-        label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 18, weight: .bold)
-        return label
-    }()
-    
-    private lazy var ingredientsLabel:UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .systemFont(ofSize: 18, weight: .regular)
         return label
     }()
     
@@ -67,7 +50,7 @@ class FRDetailView: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.spacing = 5
+        stackView.spacing = 15
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -91,9 +74,7 @@ class FRDetailView: UIView {
         scrollView.addSubview(contentView)
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(dessertImageView)
-        stackView.addArrangedSubview(ingredientsTitleLabel)
         stackView.addArrangedSubview(ingredientsLabel)
-        stackView.addArrangedSubview(instructionsTitleLabel)
         stackView.addArrangedSubview(instructionsLabel)
     }
     
@@ -132,7 +113,8 @@ class FRDetailView: UIView {
     
     func setUpConstraintsIngredientsLabel() {
         NSLayoutConstraint.activate([
-            ingredientsLabel.topAnchor.constraint(equalTo: ingredientsTitleLabel.topAnchor, constant: 30)
+            ingredientsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            ingredientsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
     

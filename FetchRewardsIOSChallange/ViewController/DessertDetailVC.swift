@@ -11,6 +11,7 @@ import UIKit
 class DessertDetailVC:UIViewController {
     let detailView = FRDetailView(frame: UIScreen.main.bounds)
     var mealViewModel = [FRDetailByIdViewModel]()
+    let activityIndicator = UIActivityIndicatorView()
     override func viewDidLoad() {
         super.viewDidLoad()
         setUPDetailView()
@@ -18,6 +19,7 @@ class DessertDetailVC:UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadActivityIndicator()
         fetchDessertById()
     }
     
@@ -27,6 +29,8 @@ class DessertDetailVC:UIViewController {
     }
     
     private func fetchDessertById() {
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
         APICaller.shared.fetchDessert(for: detailView.mealID) { [weak self] result in
             switch result {
             case.success(let meal):
@@ -40,11 +44,22 @@ class DessertDetailVC:UIViewController {
                     }
                    
                     self?.detailView.configure(with: self?.mealViewModel ?? [])
+                    self?.activityIndicator.stopAnimating()
+                    self?.view.isUserInteractionEnabled = true
                 }
                 
             case .failure(_):
                 fatalError()
             }
         }
+    }
+    
+    private func loadActivityIndicator() {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.backgroundColor = .darkGray
+        activityIndicator.style = .large
+        activityIndicator.color = .darkGray
+        view.addSubview(activityIndicator)
     }
 }
