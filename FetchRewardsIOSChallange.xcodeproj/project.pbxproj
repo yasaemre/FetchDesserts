@@ -136,6 +136,7 @@
 		C6F49E61280091A700B6B7DB /* FetchRewardsIOSChallange */ = {
 			isa = PBXGroup;
 			children = (
+				C6F49E952800960500B6B7DB /* Utilities */,
 				C64112402803ED1A00EEF036 /* Supporting Files */,
 				C6F49E982800965200B6B7DB /* Model */,
 				C6F49E9B28009B8200B6B7DB /* View */,
@@ -170,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				C6F49E93280094D700B6B7DB /* APICaller.swift */,
-				C6F49E952800960500B6B7DB /* Utilities */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";

@@ -133,6 +133,10 @@ class FRDessertDetailView: UIView {
     }
     
     //Set the selected dessert to view with viewModel design pattern
+    //why I make network request here is we do not handle the errors in the fetching operation
+    //Although it is not super applicable to SOLID principle, here in this function we do not strictly need parsing error and handling all the errors in this function.
+    //However, if my supervisor or team think that it violates organisation of code, I am happy to make networking operation
+    //in the network manager. I would be happy to be part of the team consensus.
     func configure(with viewModel:[FRDessertDetailViewModel]) {
         if let ingredients = viewModel.first?.ingredients {
             ingredientsLabel.text = "Ingredients: \(ingredients)"
